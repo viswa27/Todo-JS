@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo list</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+
+<body>
+    <div id="app">
+        <h1>Todo App</h1>
+        <button id="addTaskBtn">Add New Task</button>
+        <div id="taskList"></div>
+    </div>
+
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add New Task</h2>
+            <input type="text" id="taskNameInput" placeholder="Task Name">
+            <button id="addTaskModalBtn">Add Task</button>
+        </div>
+    </div>
+    <div class="card" onclick="showCard(this, this.querySelector('h3').textContent)"></div>
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add Event</h2>
+            <input type="text" id="eventInput" placeholder="Event">
+            <button id="addEventModalBtn">Add Event</button>
+        </div>
+    </div>
+
+    <script src="Scprit.js"></script>
+</body>
+
+</html>
