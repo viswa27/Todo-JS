@@ -1,63 +1,199 @@
-/* body {
-    background-color: black;
-} */
+body {
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  color: #fff;
+}
+.body-container {
+  width: 1200px;
+}
+.navbar1 {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.navbar2 {
+  display: flex;
+  justify-content: space-between;
+  display: none;
+  gap: 40px;
+  margin-bottom: 20px;
+}
+.navbar-logo {
+  font-size: 34px;
+  font-weight: bold;
 
-#app {
-    text-align: center;
-    margin-top: 50px;
+  width: auto;
+  color: #fff;
+}
+.logo-inner2 {
+  font-weight: normal;
+}
+.newTask {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 24px;
+  vertical-align: middle;
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+a:link {
+  text-decoration: none;
+  color: #fff;
+}
+.plus img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  padding: 5px;
+}
+.left-arrow img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  padding: 5px;
+  filter: invert(1);
+}
+.popup {
+  background-color: #fff;
+  color: black;
+  width: max-content;
+  padding: 40px;
+  display: none;
+  position: absolute;
+  top: 40vh;
+  left: 40vw;
+  border-radius: 20px;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+.popup div {
+  display: flex;
+  justify-content: space-evenly;
+}
+.popup h1 {
+  margin: 0;
+  text-align: center;
+}
+.popup input {
+  width: 25vh;
+  margin: 14px;
+}
+.popup button {
+  background-color: rgb(0, 160, 253);
+  color: white;
+  width: 60px;
+  height: 25px;
+  border-radius: 5px;
+}
+
+.todo-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  position: relative;
+}
+.todocard {
+  background-color: #fff;
+  padding: 10px;
+  color: black;
+  width: 250px;
+  height: 300px;
+  border-radius: 10px;
+}
+.todoHeadings {
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.todoDes {
+  height: 200px;
+}
+.todoButtons {
+  display: flex;
+  justify-content: right;
+  gap: 10px;
+}
+.newItemTodo {
+  height: 35px;
+  width: 35px;
+  cursor: pointer;
+}
+.deleteTodo {
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+.taskItem {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 10px 0;
+}
+.taskItem p {
+  margin: 0;
+}
+#headerName {
+  font-size: 34px;
+  font-weight: bold;
+
+  width: auto;
+  color: #fff;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.taskItem button {
+  background-color: rgb(0, 160, 253);
+  color: white;
+  width: 60px;
+  height: 25px;
+  border-radius: 5px;
+}
+.taskItem p {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 768px) {
+  .popup {
+    left: 10vw;
   }
-  
-  #taskList {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 40px;
+  .navbar-logo {
+    font-size: 26px;
   }
-  
-  .card {
-    width: 200px;
-    height: 600px;
-    margin-top: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
+  .plus img {
+    height: 30px;
+    width: 30px;
+    padding: 3px;
   }
-  
-  .card h3 {
-    margin-top: 0;
+  .newTaskText {
+    font-size: 20px;
   }
-  
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
+  .left-arrow img {
+    height: 30px;
+    width: 30px;
+    padding: 3px;
   }
-  
-  .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-  }
-  
-  .close {
-    color: #aaa;
-    float: right;
+  #headerName {
     font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
+    width: 20vh;
+    color: #fff;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
-  
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+  .navbar2 .newTaskText {
+    display: none;
   }
-  
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .popup {
+    left: 25vw;
+  }
+}

@@ -1,130 +1,168 @@
-const addTaskBtn = document.getElementById("addTaskBtn");
-const addTaskModalBtn = document.getElementById("addTaskModalBtn");
-const addEventModalBtn = document.getElementById("addEventModalBtn");
-const taskNameInput = document.getElementById("taskNameInput");
-const eventInput = document.getElementById("eventInput");
-const taskList = document.getElementById("taskList");
-
-// Add event listener to show task modal
-addTaskBtn.addEventListener("click", () => {
-  document.getElementById("taskModal").style.display = "block";
-});
-
-// Add event listener to close task modal
-document.getElementById("taskModal").getElementsByClassName("close")[0].addEventListener("click", () => {
-  document.getElementById("taskModal").style.display = "none";
-});
-
-// Add event listener to close event modal
-document.getElementById("eventModal").getElementsByClassName("close")[0].addEventListener("click", () => {
-  document.getElementById("eventModal").style.display = "none";
-});
-
-// Add event listener to add task
-addTaskModalBtn.addEventListener("click", () => {
-  const taskName = taskNameInput.value.trim();
-  if (taskName !== "") {
-    addTask(taskName);
-    taskNameInput.value = "";
-    document.getElementById("taskModal").style.display = "none";
+var popup = document.getElementById("popup");
+var taskname = document.getElementById("taskname");
+var bodySubcontainer = document.getElementById("body-Subcontainer");
+var isOpen = true;
+function show() {
+  if (isOpen) {
+    isOpen = false;
+    popup.style.display = "block";
+    bodySubcontainer.style.filter = "blur(8px)";
+    taskname.value = "";
+  } else {
+    isOpen = true;
+    popup.style.display = "none";
+    bodySubcontainer.style.filter = "none";
   }
-});
-
-// Add event listener to add event
-document.addEventListener("click", (e) => {
-  if (e.target && e.target.classList.contains("addEventBtn")) {
-    const card = e.target.parentElement;
-    document.getElementById("eventModal").style.display = "block";
-    addEventModalBtn.onclick = () => {
-      const event = eventInput.value.trim();
-      if (event !== "") {
-        addEvent(card, event);
-        eventInput.value = "";
-        document.getElementById("eventModal").style.display = "none";
-      }
-    };
-  }
-});
-
-// Add event listener to remove completed events
-document.addEventListener("click", (e) => {
-  if (e.target && e.target.classList.contains("removeCompletedBtn")) {
-    const card = e.target.parentElement;
-    const completedEvents = card.getElementsByClassName("done");
-    while (completedEvents.length > 0) {
-      completedEvents[0].remove();
-    }
-  }
-});
-
-// Add event listener to view a card
-document.addEventListener("click", (e) => {
-  if (e.target && e.target.classList.contains("card")) {
-    const card = e.target;
-    const heading = card.querySelector("h3").textContent;
-    showCard(card, heading);
-  }
-});
-
-// Add event listener to go back to main page
-document.addEventListener("click", (e) => {
-  if (e.target && e.target.id === "goBackBtn") {
-    document.getElementById("taskList").style.display = "flex";
-    document.getElementById("cardView").style.display = "none";
-  }
-});
-
-// Function to add a new task
-function addTask(taskName) {
-  const card = document.createElement("div");
-  card.classList.add("card");
-
-  const heading = document.createElement("h3");
-  heading.textContent = taskName;
-
-  const addEventBtn = document.createElement("button");
-  addEventBtn.textContent = "Add Event";
-  addEventBtn.classList.add("addEventBtn");
-
-  const removeCompletedBtn = document.createElement("button");
-  removeCompletedBtn.textContent = "Remove Completed";
-  removeCompletedBtn.classList.add("removeCompletedBtn");
-
-  card.appendChild(heading);
-  card.appendChild(addEventBtn);
-  card.appendChild(removeCompletedBtn);
-
-  taskList.appendChild(card);
+}
+function hide() {
+  popup.style.display = "none";
+  bodySubcontainer.style.filter = "none";
+  isOpen = true;
 }
 
-// Function to add a new event to a card
-function addEvent(card, event) {
-  const eventItem = document.createElement("div");
-  eventItem.textContent = event;
 
-  card.appendChild(eventItem);
+var popup2 = document.getElementById("popup2");
+var taskname2 = document.getElementById("taskname2");
+var isOpen2 = true;
+function show2(id) {
+  if (isOpen2) {
+    isOpen2 = false;
+    popup2.style.display = "block";
+    bodySubcontainer.style.filter = "blur(8px)";
+    taskname2.value = "";
+  } else {
+    isOpen2 = true;
+    popup2.style.display = "none";
+    bodySubcontainer.style.filter = "none";
+  }
+  cardId = id;
+}
+function hide2() {
+  popup2.style.display = "none";
+  bodySubcontainer.style.filter = "none";
+  isOpen2 = true;
 }
 
-// Function to show a card
-function showCard(card, heading) {
-  const cardView = document.getElementById("cardView");
-  cardView.innerHTML = "";
-  cardView.style.display = "block";
-  document.getElementById("taskList").style.display = "none";
+//
+var todoCount = 0;
+var taskCount = 0;
+var todos = document.getElementById("todos");
 
-  const cardHeading = document.createElement("h2");
-  cardHeading.textContent = heading;
+function createPopup() {
+  back();
+  var todonoItems = document.getElementById("todo-noItems");
+  var taskname = document.getElementById("taskname");
+  todonoItems.style.display = "none";
+  todoCount++;
 
-  const goBackBtn = document.createElement("button");
-  goBackBtn.textContent = "Go Back";
-  goBackBtn.id = "goBackBtn";
+  var newTodo = document.createElement("div");
+  var todoHeading = document.createElement("h2");
+  var todoDes = document.createElement("div");
+  var todoButtons = document.createElement("div");
+  var deleteTodo = document.createElement("img");
+  var newItemTodo = document.createElement("img");
+  var newItembtn = document.createElement("div");
 
-  cardView.appendChild(cardHeading);
-  cardView.appendChild(goBackBtn);
+  if (taskname.value === "") {
+    todoHeading.innerText = `Task ${todoCount}`;
+    popup.style.display = "none";
+    bodySubcontainer.style.filter = "none";
+    isOpen = true;
+  } else {
+    todoHeading.innerText = taskname.value;
+    popup.style.display = "none";
+    bodySubcontainer.style.filter = "none";
+    isOpen = true;
+  }
+  newTodo.classList.add("todocard");
+  newTodo.id = `newTodo${todoCount}`;
+  todoDes.classList.add("todoDes");
+  todoDes.id = `todoDes${todoCount}`;
+  todoHeading.id = `todoHeading${todoCount}`;
 
-  const cardClone = card.cloneNode(true);
-  cardClone.classList.remove("card");
-  cardClone.classList.add("card-view");
+  todoHeading.classList.add("todoHeadings");
+  todoButtons.classList.add("todoButtons");
+  deleteTodo.classList.add("deleteTodo");
+  newItemTodo.classList.add("newItemTodo");
+  newItembtn.classList.add("newItembtn");
+  newItemTodo.src = "plus.svg";
+  deleteTodo.src = "./trash.png";
+  newItembtn.setAttribute("onclick", `show2(${todoCount})`);
+  todoHeading.setAttribute("onclick", `showThis(${todoCount})`);
+  //adding to parent
+  todos.appendChild(newTodo);
+  newTodo.appendChild(todoHeading);
+  newTodo.appendChild(todoDes);
+  newTodo.appendChild(todoButtons);
+  todoButtons.appendChild(newItembtn);
+  newItembtn.appendChild(newItemTodo);
+  todoButtons.appendChild(deleteTodo);
+  deleteTodo.addEventListener("click", function () {
+    newTodo.remove();
+  });
+}
 
-  cardView.appendChild(cardClone);
+function createPopup2() {
+  const contentListId = `todoDes${cardId}`;
+  var Ul = document.getElementById(contentListId);
+  taskCount++;
+
+  var taskItem = document.createElement("div");
+  var newTask = document.createElement("p");
+  var markDone = document.createElement("button");
+
+  if (taskname2.value === "") {
+    newTask.innerText = `Item ${taskCount}`;
+    popup2.style.display = "none";
+    bodySubcontainer.style.filter = "none";
+    isOpen2 = true;
+  } else {
+    newTask.innerText = taskname2.value;
+    popup2.style.display = "none";
+    bodySubcontainer.style.filter = "none";
+    isOpen2 = true;
+  }
+
+  markDone.innerText = `Done`;
+
+  taskItem.classList.add("taskItem");
+  Ul.appendChild(taskItem);
+  taskItem.appendChild(newTask);
+  taskItem.appendChild(markDone);
+
+  markDone.addEventListener("click", function () {
+    newTask.style.textDecoration = "line-through";
+    newTask.style.color = "red";
+    markDone.style.display = "none";
+  });
+}
+function showThis(id) {
+  var todocard = document.querySelectorAll(".todocard");
+  var navbar11 = document.getElementById("navbar11");
+  var navbar22 = document.getElementById("navbar22");
+  var headerName = document.getElementById("headerName");
+
+  const todoListId = `newTodo${id}`;
+  var selectedTodo = document.getElementById(todoListId);
+  const todoHeading = `todoHeading${id}`;
+  var selectedTodoHeading = document.getElementById(todoHeading);
+  console.log(selectedTodoHeading.innerText);
+
+  todocard.forEach((allCards) => {
+    allCards.style.display = "none";
+    navbar11.style.display = "none";
+    navbar22.style.display = "flex";
+  });
+  selectedTodo.style.display = "block";
+  headerName.innerText = selectedTodoHeading.innerText;
+}
+function back() {
+  var todocard = document.querySelectorAll(".todocard");
+  var navbar11 = document.getElementById("navbar11");
+  var navbar22 = document.getElementById("navbar22");
+  todocard.forEach((allCards) => {
+    allCards.style.display = "block";
+    navbar11.style.display = "flex";
+    navbar22.style.display = "none";
+  });
 }

@@ -9,31 +9,72 @@
 </head>
 
 <body>
-    <div id="app">
-        <h1>Todo App</h1>
-        <button id="addTaskBtn">Add New Task</button>
-        <div id="taskList"></div>
-    </div>
-
-    <div id="taskModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Add New Task</h2>
-            <input type="text" id="taskNameInput" placeholder="Task Name">
-            <button id="addTaskModalBtn">Add Task</button>
+    <div class="body-container">
+        <div id="body-Subcontainer">
+          <div class="navbar1" id="navbar11">
+            <div class="navbar-logo">
+              Tasks
+              <span class="logo-inner2"> List</span>
+            </div>
+    
+            <div>
+              <button class="newTask" onclick="show()">
+                <div class="plus">
+                  <img src="./plus.svg" alt="not supported" />
+                </div>
+                <span class="newTaskText">Add Item</span>
+              </button>
+            </div>
+          </div>
+    
+          <!--  -->
+          <div class="navbar2" id="navbar22">
+            <div class="newTask">
+              <button class="newTask" onclick="back()">
+                <div class="left-arrow">
+                  <img src="./left-arrow.svg" alt="not supported" />
+                </div>
+                <span class="newTaskText">Back</span>
+              </button>
+            </div>
+    
+            <div id="headerName">
+            </div>
+    
+            <div>
+              <button class="newTask" onclick="show2()">
+                <div class="plus">
+                  <img src="plus.svg" alt="not supported" />
+                </div>
+              </button>
+            </div>
+          </div>
+    
+          <div id="todos" class="todo-container">
+            <h2 id="todo-noItems">No Items in the Todo List</h2>
+          </div>
         </div>
-    </div>
-    <div class="card" onclick="showCard(this, this.querySelector('h3').textContent)"></div>
-    <div id="eventModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Add Event</h2>
-            <input type="text" id="eventInput" placeholder="Event">
-            <button id="addEventModalBtn">Add Event</button>
+    
+        <div class="popup" id="popup">
+          <h1>Add New Item</h1>
+          <input type="text" id="taskname" />
+          <br />
+          <div>
+            <button class="addItemBtn" onclick="createPopup()">&#43;</button>
+            <button class="closeBtn" onclick="hide()">X</button>
+          </div>
         </div>
-    </div>
-
-    <script src="Scprit.js"></script>
+        <div class="popup" id="popup2">
+          <h1>Add New List</h1>
+          <input type="text" id="taskname2" />
+          <br />
+          <div>
+            <button class="addItemBtn" onclick="createPopup2()">&#43;</button>
+            <button class="closeBtn" onclick="hide2()">X</button>
+          </div>
+        </div>
+      </div>
+      <script src="./Scprit.js"></script>
 </body>
 
 </html>
